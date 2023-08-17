@@ -18,20 +18,22 @@ const userController = {
         User.findOne({_id: params.id})
         .populate({
             path: "thoughts",
-            select: "-__v"
+            select: "-_v"
         })
         .populate({
             path: "friends",
-            select: "-__v"
+            select: "-_v"
         })
-        .select("-__v")
+        .select("-_v")
         .then((dbUserData) => {
             if (!dbUserData) {
                 return res
                 .status(400)
                 .json({message: "no user found with this id "});
             }
+            
             res.json(dbUserData);
+           
         })
         .catch((err) => {
             console.log(err);

@@ -95,23 +95,23 @@ const thoughtController = {
       { $addToSet: { reactions: body } },
       { new: true, runValidators: true }
     )
-    .then((dbThoughtData)=> {
-        if(!dbThoughtData){
-            res.status(400).json({message:"no thought with this id"});
-            return;
+      .then((dbThoughtData) => {
+        if (!dbThoughtData) {
+          res.status(400).json({ message: "no thought with this id" });
+          return;
         }
         res.json(dbThoughtData);
-    })
-    .catch((err) => res.json(err));
+      })
+      .catch((err) => res.json(err));
   },
-  removeReaction({params}, res){
+  removeReaction({ params }, res) {
     Thought.findOneAndUpdate(
-        {_id: params.thoughtId},
-        {$pull: { reactions: {reactionId: params.reactionId}}},
-        {new:true},
+      { _id: params.thoughtId },
+      { $pull: { reactions: { reactionId: params.reactionId } } },
+      { new: true }
     )
-    .then((dbThoughtData) => res.json(dbThoughtData))
-    .catch((err) => res.json(err));
+      .then((dbThoughtData) => res.json(dbThoughtData))
+      .catch((err) => res.json(err));
   },
 };
 module.exports = thoughtController;
