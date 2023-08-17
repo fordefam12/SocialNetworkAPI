@@ -16,7 +16,7 @@ const thoughtController = {
       });
   },
   getThoughtByID({ params }, res) {
-    Thought.finOne({ _id: params.id })
+    Thought.findOne({ _id: params.id })
       .populate({
         path: "reactions",
         select: "-__v",
@@ -43,30 +43,33 @@ const thoughtController = {
           { new: true }
         );
       })
-      .then((dbuserData) => {
-        if (!dbuserData) {
+      .then((dbUserData) => {
+        if (!dbUserData) {
           return res
-            .status(400)
-            .json({ message: "thought created but no user with this id" });
+            .status(404)
+            .json({ message: "Thought created but no user with this id!" });
         }
-        res.json({ message: "thought successfully created" });
+
+        res.json({ message: "Thought successfully created!" });
       })
       .catch((err) => res.json(err));
   },
-  UpdateThought({ params, body }, res) {
+
+  updateThought({ params, body }, res) {
     Thought.findOneAndUpdate({ _id: params.id }, body, {
       new: true,
       runValidators: true,
     })
       .then((dbThoughtData) => {
         if (!dbThoughtData) {
-          res.status(400).json({ message: "no thought found with this id" });
+          res.status(404).json({ message: "No thought found with this id!" });
           return;
         }
         res.json(dbThoughtData);
       })
       .catch((err) => res.json(err));
   },
+
   deleteThought({ params }, res) {
     Thought.findOneAndDelete({ _id: params.id })
       .then((dbThoughtData) => {
