@@ -1,8 +1,4 @@
-const { User } = require("../models");
-const Thought = require("../models/thought");
-
-const (User,Thought ) = require("../models");
-
+const { User, Thought } = require("../models");
 const userController = {
     getAllUser(req, res) {
         User.find({})
@@ -78,7 +74,8 @@ const userController = {
     addFriend({params}, res){
         User.findOneAndUpdate(
             {_id: params.userId},
-            {$addToSet: {friends:params.friendsId}}{new:true, runValidators:true}
+            {$addToSet: {friends:params.friendsId}},
+            {new:true, runValidators:true}
         )
         .then((dbUserData) => {
             if (!dbUserData) {

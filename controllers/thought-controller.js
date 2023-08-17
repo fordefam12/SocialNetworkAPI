@@ -1,5 +1,4 @@
 const { Thought, User } = require("../models");
-const { db } = require("../models/user");
 
 const thoughtController = {
   getAllThought(req, res) {
