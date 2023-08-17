@@ -33,5 +33,29 @@ const thoughtController = {
             res.sendStatus(400);
         });
     },
-    
+
+    createThought({params, body}, res) {
+        Thought.create(body)
+        .then(({_id}) => {
+            return User.findOneAndUpdate(
+                {_id: body.userId},
+                {$push:{thoughts:_id}},
+                {new:true}
+            );
+        })
+        .then((dbuserData) => {
+            if (!dbuserData) {
+                return res.status(400)
+                .json({message: "thought created but no user with this id"});
+            }
+            res.json({message: "thought successfully created" });
+        })
+        .catch((err) => res.json(err));
+    },
+    UpdateThought({params, body }, res) {
+        Thought.findOneAndUpdate({_id: params.id},body, {
+            new: true,
+            runValidators: true,
+        })
+    }
 }
