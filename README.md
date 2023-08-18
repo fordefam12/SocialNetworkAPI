@@ -1,4 +1,6 @@
-SocialnetworkAPI
+## SocialnetworkAPI
+
+
 ![JavaScript:](https://img.shields.io/badge/JavaScript-100%25-blue)
             
 ## Description
@@ -45,9 +47,6 @@ MIT
 
 ![JavaScript:](https://img.shields.io/badge/JavaScript-100%25-red)
             
-
-## Tests
-no
 
 ## Questions
 Any questions about this project please send me a message on *https://github.com/fordefam12 or email me at [fordefam12@gmail.com]
