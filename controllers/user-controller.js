@@ -1,5 +1,7 @@
 const { User, Thought } = require("../models");
+
 const userController = {
+  // get all users
   getAllUser(req, res) {
     User.find({})
       .populate({
@@ -14,6 +16,8 @@ const userController = {
         res.sendStatus(400);
       });
   },
+
+  // get one user by id
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
       .populate({
@@ -39,11 +43,14 @@ const userController = {
       });
   },
 
+  // create user
   createUser({ body }, res) {
     User.create(body)
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => res.json(err));
   },
+
+  // update user by id
   updateUser({ params, body }, res) {
     User.findOneAndUpdate({ _id: params.id }, body, {
       new: true,
@@ -51,50 +58,58 @@ const userController = {
     })
       .then((dbUserData) => {
         if (!dbUserData) {
-          res.status(400).json({ message: "no user found with this id" });
+          res.status(404).json({ message: "No user found with this id!" });
           return;
         }
         res.json(dbUserData);
       })
       .catch((err) => res.json(err));
   },
+
+  // delete user
   deleteUser({ params }, res) {
     User.findOneAndDelete({ _id: params.id })
       .then((dbUserData) => {
         if (!dbUserData) {
-          return res.status(400).json({ message: "no user with this id" });
+          return res.status(404).json({ message: "No user with this id!" });
         }
+        // BONUS: get ids of user's `thoughts` and delete them all
+        // $in to find specific things
         return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
       })
       .then(() => {
-        res.json({ message: "User and associated thoughts deleted" });
+        res.json({ message: "User and associated thoughts deleted!" });
       })
       .catch((err) => res.json(err));
   },
+
+  // add friend
   addFriend({ params }, res) {
     User.findOneAndUpdate(
       { _id: params.userId },
-      { $addToSet: { friends: params.friendsId } },
+      { $addToSet: { friends: params.friendId } },
       { new: true, runValidators: true }
     )
       .then((dbUserData) => {
         if (!dbUserData) {
-          res.status(400).json({ message: "nouser with this id" });
+          res.status(404).json({ message: "No user with this id" });
           return;
         }
         res.json(dbUserData);
       })
       .catch((err) => res.json(err));
   },
+
+  // delete friend
   removeFriend({ params }, res) {
     User.findOneAndUpdate(
       { _id: params.userId },
-      { $pull: { friends: params.friendsId } },
+      { $pull: { friends: params.friendId } },
       { new: true }
     )
       .then((dbUserData) => {
         if (!dbUserData) {
-          return res.status(400).json({ message: "No user with this id" });
+          return res.status(404).json({ message: "No user with this id!" });
         }
         res.json(dbUserData);
       })
