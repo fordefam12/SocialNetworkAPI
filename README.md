@@ -53,7 +53,7 @@ no
 Any questions about this project please send me a message on *https://github.com/fordefam12 or email me at [fordefam12@gmail.com]
 
 ## URL
-  
+
 <p align='center'>
 <a href='https://github.com/fordefam12/SocialnetworkAPI'><img src='./assets/qr-code (8).png' width="60%"></a>
 </p>
