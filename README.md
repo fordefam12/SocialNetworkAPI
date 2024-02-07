@@ -1,13 +1,21 @@
-## SocialnetworkAPI
 
+## SocialnetworkAPI
+<p align='center'>
+<a href='https://github.com/fordefam12'><img src='./assets/Free Logo Maker - Get Custom Logo Designs in Minutes _ Looka.png'height='20%' width="20%"></a>
+</p>
 
 ![JavaScript:](https://img.shields.io/badge/JavaScript-100%25-blue)
-            
-## Description
+
+
+
+
+
+ 
+## ➤ Description
 
  social network app that allows you to display thoughts connect with friends and  react to other people’s thoughts
 
-## Table of Contents
+## ➤ Table of Contents
 *[Title](#title)
 
 *[Description](#description)
@@ -46,7 +54,11 @@ MIT
 ## badges
 
 ![JavaScript:](https://img.shields.io/badge/JavaScript-100%25-red)
-            
+
+ <p align="center">
+  <a href="https://github.com/fordefam12"><img src="https://github-readme-stats.vercel.app/api?username=fordefam12&show_icons=true&theme=transparent" alt="fordefam12's github stats"></a>
+</p>
+   
 
 ## Questions
 Any questions about this project please send me a message on *https://github.com/fordefam12 or email me at [fordefam12@gmail.com]
